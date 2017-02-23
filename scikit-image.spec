@@ -4,7 +4,7 @@
 #
 Name     : scikit-image
 Version  : 0.12.3
-Release  : 9
+Release  : 10
 URL      : http://pypi.debian.net/scikit-image/scikit-image-0.12.3.tar.gz
 Source0  : http://pypi.debian.net/scikit-image/scikit-image-0.12.3.tar.gz
 Summary  : Image processing routines for SciPy
@@ -12,12 +12,15 @@ Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause MIT
 Requires: scikit-image-bin
 Requires: scikit-image-python
+Requires: dask
 Requires: matplotlib
 Requires: networkx
 Requires: numpy
 Requires: scipy
 Requires: six
 BuildRequires : Cython
+BuildRequires : dask
+BuildRequires : networkx
 BuildRequires : numpy
 BuildRequires : pbr
 BuildRequires : pip
@@ -50,7 +53,7 @@ python components for the scikit-image package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1487878123
+export SOURCE_DATE_EPOCH=1487880713
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
@@ -59,7 +62,7 @@ python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1487878123
+export SOURCE_DATE_EPOCH=1487880713
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
