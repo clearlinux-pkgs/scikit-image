@@ -6,3 +6,4 @@ Cython
 networkx
 dask
 Pillow
+PyWavelets

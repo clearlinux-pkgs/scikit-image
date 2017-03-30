@@ -4,7 +4,7 @@
 #
 Name     : scikit-image
 Version  : 0.13.0
-Release  : 12
+Release  : 13
 URL      : http://pypi.debian.net/scikit-image/scikit-image-0.13.0.tar.gz
 Source0  : http://pypi.debian.net/scikit-image/scikit-image-0.13.0.tar.gz
 Summary  : Image processing routines for SciPy
@@ -13,6 +13,7 @@ License  : BSD-2-Clause BSD-3-Clause MIT
 Requires: scikit-image-bin
 Requires: scikit-image-python
 Requires: Pillow
+Requires: PyWavelets
 Requires: dask
 Requires: matplotlib
 Requires: networkx
@@ -20,6 +21,8 @@ Requires: numpy
 Requires: scipy
 Requires: six
 BuildRequires : Cython
+BuildRequires : Pillow
+BuildRequires : PyWavelets
 BuildRequires : dask
 BuildRequires : networkx
 BuildRequires : numpy
@@ -61,7 +64,7 @@ python components for the scikit-image package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1490885143
+export SOURCE_DATE_EPOCH=1490906537
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
@@ -70,7 +73,7 @@ python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1490885143
+export SOURCE_DATE_EPOCH=1490906537
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
@@ -87,4 +90,5 @@ echo ----[ mark ]----
 
 %files python
 %defattr(-,root,root,-)
-/usr/lib/python*/*
+/usr/lib/python2*/*
+/usr/lib/python3*/*
