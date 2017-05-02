@@ -4,7 +4,7 @@
 #
 Name     : scikit-image
 Version  : 0.13.0
-Release  : 13
+Release  : 14
 URL      : http://pypi.debian.net/scikit-image/scikit-image-0.13.0.tar.gz
 Source0  : http://pypi.debian.net/scikit-image/scikit-image-0.13.0.tar.gz
 Summary  : Image processing routines for SciPy
