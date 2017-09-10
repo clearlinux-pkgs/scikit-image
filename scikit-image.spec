@@ -4,17 +4,17 @@
 #
 Name     : scikit-image
 Version  : 0.13.0
-Release  : 15
+Release  : 16
 URL      : http://pypi.debian.net/scikit-image/scikit-image-0.13.0.tar.gz
 Source0  : http://pypi.debian.net/scikit-image/scikit-image-0.13.0.tar.gz
 Summary  : Image processing routines for SciPy
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause MIT
 Requires: scikit-image-bin
+Requires: scikit-image-legacypython
 Requires: scikit-image-python
 Requires: Pillow
 Requires: PyWavelets
-Requires: dask
 Requires: matplotlib
 Requires: networkx
 Requires: numpy
@@ -34,14 +34,10 @@ BuildRequires : scikit-learn
 BuildRequires : setuptools
 
 %description
-This directory contains meta-files related to the Lewiner marching cubes
-algorithm. These are not used by the algorithm, but can be convenient
-for development/maintenance:
-
-* MarchingCubes.cpp - the original algorithm, this is ported to Cython
-* LookupTable.h - the original LUTs, these are ported to Python
-* createluts.py - scrip to generate Python luts from the .h file
-* visual_test.py - script to compare visual results of marchingcubes algorithms
+Image processing algorithms for SciPy, including IO, morphology, filtering,
+        warping, color manipulation, object detection, etc.
+        
+        Please refer to the online documentation at
 
 %package bin
 Summary: bin components for the scikit-image package.
@@ -51,9 +47,18 @@ Group: Binaries
 bin components for the scikit-image package.
 
 
+%package legacypython
+Summary: legacypython components for the scikit-image package.
+Group: Default
+
+%description legacypython
+legacypython components for the scikit-image package.
+
+
 %package python
 Summary: python components for the scikit-image package.
 Group: Default
+Requires: scikit-image-legacypython
 
 %description python
 python components for the scikit-image package.
@@ -63,8 +68,11 @@ python components for the scikit-image package.
 %setup -q -n scikit-image-0.13.0
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1490906537
+export SOURCE_DATE_EPOCH=1505062976
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
@@ -73,7 +81,7 @@ python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1490906537
+export SOURCE_DATE_EPOCH=1505062976
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
@@ -88,7 +96,10 @@ echo ----[ mark ]----
 %defattr(-,root,root,-)
 /usr/bin/skivi
 
-%files python
+%files legacypython
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
+
+%files python
+%defattr(-,root,root,-)
 /usr/lib/python3*/*
