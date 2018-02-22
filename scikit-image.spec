@@ -4,14 +4,13 @@
 #
 Name     : scikit-image
 Version  : 0.13.1
-Release  : 21
+Release  : 22
 URL      : http://pypi.debian.net/scikit-image/scikit-image-0.13.1.tar.gz
 Source0  : http://pypi.debian.net/scikit-image/scikit-image-0.13.1.tar.gz
 Summary  : Image processing routines for SciPy
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause MIT
 Requires: scikit-image-bin
-Requires: scikit-image-legacypython
 Requires: scikit-image-python3
 Requires: scikit-image-python
 Requires: Pillow
@@ -48,19 +47,9 @@ Group: Binaries
 bin components for the scikit-image package.
 
 
-%package legacypython
-Summary: legacypython components for the scikit-image package.
-Group: Default
-Requires: python-core
-
-%description legacypython
-legacypython components for the scikit-image package.
-
-
 %package python
 Summary: python components for the scikit-image package.
 Group: Default
-Requires: scikit-image-legacypython
 Requires: scikit-image-python3
 
 %description python
@@ -84,19 +73,16 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1507173154
+export SOURCE_DATE_EPOCH=1519319109
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1507173154
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
@@ -107,10 +93,6 @@ echo ----[ mark ]----
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/skivi
-
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
 
 %files python
 %defattr(-,root,root,-)
