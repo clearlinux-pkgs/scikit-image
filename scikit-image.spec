@@ -4,7 +4,7 @@
 #
 Name     : scikit-image
 Version  : 0.14.0
-Release  : 28
+Release  : 29
 URL      : http://pypi.debian.net/scikit-image/scikit-image-0.14.0.tar.gz
 Source0  : http://pypi.debian.net/scikit-image/scikit-image-0.14.0.tar.gz
 Summary  : Image processing routines for SciPy
@@ -16,6 +16,7 @@ Requires: scikit-image-python
 Requires: Pillow
 Requires: PyWavelets
 Requires: cloudpickle
+Requires: dask
 Requires: matplotlib
 Requires: networkx
 Requires: scipy
@@ -72,7 +73,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1527704694
+export SOURCE_DATE_EPOCH=1527749303
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "

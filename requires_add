@@ -6,3 +6,4 @@ cloudpickle
 matplotlib
 networkx
 scipy
+dask
