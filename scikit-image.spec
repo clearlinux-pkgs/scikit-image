@@ -4,7 +4,7 @@
 #
 Name     : scikit-image
 Version  : 0.14.1
-Release  : 36
+Release  : 37
 URL      : https://files.pythonhosted.org/packages/a4/5d/05d40ad281cb16bc9dbd91982a918162b374c43e84eb2c8f7070e4be6729/scikit-image-0.14.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/a4/5d/05d40ad281cb16bc9dbd91982a918162b374c43e84eb2c8f7070e4be6729/scikit-image-0.14.1.tar.gz
 Summary  : Image processing routines for SciPy
