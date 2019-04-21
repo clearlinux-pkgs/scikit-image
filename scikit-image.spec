@@ -4,7 +4,7 @@
 #
 Name     : scikit-image
 Version  : 0.15.0
-Release  : 40
+Release  : 41
 URL      : https://files.pythonhosted.org/packages/e0/46/ca035f5d7d3414124a3a5ef22cd2e75c0c5149042a668375f1d44eb69f8f/scikit-image-0.15.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/e0/46/ca035f5d7d3414124a3a5ef22cd2e75c0c5149042a668375f1d44eb69f8f/scikit-image-0.15.0.tar.gz
 Summary  : Image processing routines for SciPy
@@ -18,6 +18,7 @@ Requires: Pillow
 Requires: PyWavelets
 Requires: cloudpickle
 Requires: dask
+Requires: imageio
 Requires: matplotlib
 Requires: networkx
 Requires: scipy
@@ -89,7 +90,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1554319307
+export SOURCE_DATE_EPOCH=1555862048
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
