@@ -4,12 +4,12 @@
 #
 Name     : scikit-image
 Version  : 0.15.0
-Release  : 46
+Release  : 47
 URL      : https://files.pythonhosted.org/packages/e0/46/ca035f5d7d3414124a3a5ef22cd2e75c0c5149042a668375f1d44eb69f8f/scikit-image-0.15.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/e0/46/ca035f5d7d3414124a3a5ef22cd2e75c0c5149042a668375f1d44eb69f8f/scikit-image-0.15.0.tar.gz
 Summary  : Image processing routines for SciPy
 Group    : Development/Tools
-License  : MIT
+License  : BSD-3-Clause MIT
 Requires: scikit-image-bin = %{version}-%{release}
 Requires: scikit-image-license = %{version}-%{release}
 Requires: scikit-image-python = %{version}-%{release}
@@ -26,26 +26,21 @@ BuildRequires : Cython
 BuildRequires : Pillow
 BuildRequires : PyWavelets
 BuildRequires : buildreq-distutils3
+BuildRequires : cloudpickle
 BuildRequires : dask
+BuildRequires : imageio
+BuildRequires : matplotlib
 BuildRequires : networkx
 BuildRequires : numpy
+BuildRequires : python3-dev
 BuildRequires : scikit-learn
+BuildRequires : scipy
 
 %description
-# pip requirements files
-## Index
-- [default.txt](default.txt)
-Default requirements
-- [docs.txt](docs.txt)
-Documentation requirements
-- [optional.txt](optional.txt)
-Optional requirements. All of these are installable without a compiler through pypi.
-- [extras.txt](extras.txt)
-Optional requirements that require a compiler to install.
-- [test.txt](test.txt)
-Requirements for running test suite
-- [build.txt](build.txt)
-Requirements for building from the source repository
+Image processing algorithms for SciPy, including IO, morphology, filtering,
+        warping, color manipulation, object detection, etc.
+        
+        Please refer to the online documentation at
 
 %package bin
 Summary: bin components for the scikit-image package.
@@ -77,6 +72,13 @@ python components for the scikit-image package.
 Summary: python3 components for the scikit-image package.
 Group: Default
 Requires: python3-core
+Provides: pypi(scikit_image)
+Requires: pypi(imageio)
+Requires: pypi(matplotlib)
+Requires: pypi(networkx)
+Requires: pypi(pillow)
+Requires: pypi(pywavelets)
+Requires: pypi(scipy)
 
 %description python3
 python3 components for the scikit-image package.
@@ -84,17 +86,19 @@ python3 components for the scikit-image package.
 
 %prep
 %setup -q -n scikit-image-0.15.0
+cd %{_builddir}/scikit-image-0.15.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1555862048
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1583784818
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -102,7 +106,8 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/scikit-image
-cp doc/tools/LICENSE.txt %{buildroot}/usr/share/package-licenses/scikit-image/doc_tools_LICENSE.txt
+cp %{_builddir}/scikit-image-0.15.0/LICENSE.txt %{buildroot}/usr/share/package-licenses/scikit-image/5bf5af38f581ac8143562a9ea27083cf358fa476
+cp %{_builddir}/scikit-image-0.15.0/doc/tools/LICENSE.txt %{buildroot}/usr/share/package-licenses/scikit-image/fb50fd87a0153fd93be5975f012fa41347306040
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -117,7 +122,8 @@ echo ----[ mark ]----
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/scikit-image/doc_tools_LICENSE.txt
+/usr/share/package-licenses/scikit-image/5bf5af38f581ac8143562a9ea27083cf358fa476
+/usr/share/package-licenses/scikit-image/fb50fd87a0153fd93be5975f012fa41347306040
 
 %files python
 %defattr(-,root,root,-)
