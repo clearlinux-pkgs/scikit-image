@@ -32,6 +32,8 @@ BuildRequires : imageio
 BuildRequires : matplotlib
 BuildRequires : networkx
 BuildRequires : numpy
+BuildRequires : pytest
+BuildRequires : python3-dev
 BuildRequires : scikit-learn
 BuildRequires : scipy
 
@@ -95,7 +97,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1605902766
+export SOURCE_DATE_EPOCH=1608054845
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$FFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -104,6 +106,11 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fn
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
+%check
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+#make test
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
