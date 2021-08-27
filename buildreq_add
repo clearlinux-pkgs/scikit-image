@@ -1,9 +1,9 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-numpy
-scikit-learn
 Cython
-networkx
-dask
 Pillow
 PyWavelets
+dask
+networkx
+numpy
+scikit-learn

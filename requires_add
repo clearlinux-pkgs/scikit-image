@@ -3,8 +3,8 @@
 Pillow
 PyWavelets
 cloudpickle
+dask
+imageio
 matplotlib
 networkx
 scipy
-dask
-imageio
