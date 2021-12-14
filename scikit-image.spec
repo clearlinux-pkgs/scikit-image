@@ -4,7 +4,7 @@
 #
 Name     : scikit-image
 Version  : 0.19.0
-Release  : 66
+Release  : 67
 URL      : https://files.pythonhosted.org/packages/25/8d/c5f060de238a6ed08e24b607f0a9a57d73e3fa654eed2a544571f73dc78a/scikit-image-0.19.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/25/8d/c5f060de238a6ed08e24b607f0a9a57d73e3fa654eed2a544571f73dc78a/scikit-image-0.19.0.tar.gz
 Summary  : Image processing in Python
